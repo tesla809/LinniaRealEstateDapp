@@ -1,0 +1,50 @@
+
+    // Uploading data-
+    // Note: we are using centralized storage to keep things simple
+    // using existing tools.
+    // Learning the basics of Web3.0, Linnia AND IPFS or Swarm
+    // might be a bit much
+    // To lower the learning curve, we will just use Amazon S3
+    // which has great documenation.
+    // Later on, we will look at how the Linnia Protocol interacts with
+    // decentralized data storage like IPFS and Ethereum's Swarm(?)
+
+    // Adding Amazon S3 storage
+    // For instructions on how to set up S3, check out our docs
+    // https://github.com/ConsenSys/linnia-resources/blob/master/GETTING_STARTED.md#storing-files-on-aws-s3 (edited)
+    // First, sign up for an Amazon account: https://aws.amazon.com/free/
+
+    // Next: create access keys aka security credientials from Amazon.
+    // This is a common thing in most web services
+    // See: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html
+    // Look up top on the right. Click on Sign in to the Console button
+    // Look up top on the right. Click on your Name > My Security Credentials
+    // We added the keys as credentials
+    // Basically, its in directory called .aws in the home directory
+    // and a file called credentials which is loaded by the file
+    // ~/.aws/credentials
+    // see: https://aws.amazon.com/sdk-for-node-js/
+    // You can also download the amazon CLI and use it to set up
+    // your credentials
+    // see: https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+    // A helpful guide to learn how to set up s3
+    // see: https://medium.com/ovrsea/deploy-automatically-a-react-app-on-amazon-s3-iam-within-minutes-da6cb0096d55
+
+    // Then create a bucket to put your files in
+    // These instructions are in the docs.
+    // Here are s3's docs on that:
+    // https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html
+
+    // Next: add the AWS JS SDK
+    // Download here: https://github.com/aws/aws-sdk-js/releases
+    // It has been added to the project top in a script tag
+    // Later on we will use node and npm to install
+    // For now, go to website, download and add to folder directory
+    // to keep things simple
+
+    // lets set up S3
+    // see on how to do it here: https://aws.amazon.com/sdk-for-node-js/
+    // not necessary since we are added S3 in script tag up top.
+    // const AWS = require('aws-sdk');
+
+    

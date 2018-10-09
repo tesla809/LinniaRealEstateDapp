@@ -1,0 +1,17 @@
+Revise UI
+Add JS
+  refactor to JSDoc
+  fix state issue in thirdparty.html
+  how to pass state in regular javascript
+Check:
+  check it onerror event handler works
+refactor JS code to es6 as new file!
+  Explain difference in code
+  point to MDN docs and tutorials
+
+add rest of code
+Add eslint?
+remove any semantic UI stuff
+
+React:
+  make sure that refresh leads to pay

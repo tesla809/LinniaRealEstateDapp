@@ -1,0 +1,38 @@
+.container {
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.header-title, .header {
+  text-align: center;
+}
+
+.header {
+  font-size: 20px;
+  background-color: #ddd;
+}
+
+.header-div {
+  margin: 20px;
+}
+
+.form-control-static {
+  background-color: pink;
+}
+
+#upload-div {
+  border: solid #bbb 2px;
+  padding: 20px;
+}
+
+.view-add-form-text-input {
+
+}
+
+.approve {
+
+}
+
+.reject {
+
+}

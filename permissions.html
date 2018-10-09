@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>Dapp- Permissions</title>
+
+<!--jQuery 3.3.1 - See docs at: https://blog.jquery.com/2018/01/20/jquery-3-3-1-fixed-dependencies-in-release-tag/
+jQuery is required for bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<!--bootstrap 3.3.7 js See docs at: https://getbootstrap.com/-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--web3.js- an interface to access Ethereum blockchain Network-->
+<script type="text/javascript" src="./web3.min.js"></script>
+<!--linnia.js- Linnia Protocol's JS library for Ethereum blockchain
+See docs at: https://www.npmjs.com/package/@linniaprotocol/linnia-js,
+https://github.com/ConsenSys/linnia-js,
+https://github.com/ConsenSys/linnia-resources -->
+<script src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.1.1/dist/index.min.js"></script>
+</head>
+
+<body>
+  <!--header-->
+  <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
+   <div class="header">
+     <a href='index.html' class="header-div"><span>View/Add Records</span></a>
+     <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
+     <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
+   </div>
+  <!--code-->
+  <div>
+    <div class="jumbotron text-center">
+        <h1>View/Add Permission</h1>
+        <p>User Input</p>
+    </div>
+    <table class="table">
+      <thead>
+          <tr>
+          <th scope="col">Give Permission To: </th>
+          <th scope="col">Name</th>
+          <th scope="col">Credit Score</th>
+          <th scope="col">W-2</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+          <th scope="row">Bank 1</th>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          </tr>
+          <tr>
+          <th scope="row">Renter 2</th>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          </tr>
+          <tr>
+          <th scope="row">Mortage Company3</th>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          <td>
+            <input class="checkbox-input" type="checkbox"
+              aria-label="Checkbox for following text input"/>
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!-- JS code -->
+<script>
+  console.log('permissions page');
+
+  // event handlers
+  const handleGrantPermission = () => {
+    console.log('handle grant permissions clicked!');
+  }
+
+  // event listener helpers
+  // repetitive- refactor to outside file with ES6?
+  // arr is the list of elements that belong to the class
+  // e is the event we want to listen too
+  // eventHandlerFunction is the event handler function
+  const addEventListenerToClasses = (arr, e, eventHandlerFunction) => {
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].addEventListener(e, eventHandlerFunction, false);
+    }
+  }
+
+  // event listeners
+  const checkboxInputDivs = document.querySelectorAll(".checkbox-input" );
+  addEventListenerToClasses(checkboxInputDivs, 'click', handleGrantPermission);
+
+</script>
+
+</body>
+</html>

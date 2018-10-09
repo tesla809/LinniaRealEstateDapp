@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Plain Old HTML, CSS, JS to help you understand Linnia
+See tutorial here: ...
+Why? We intend to remove as many barriers to learning Linnia as possible.
+There are many concepts to learn, so we are progressively introducing them
+in each module. First we will just focus on Linnia and Web3 which is advanced enough
+and establish a baseline with this really low grade web page.
+Then we will add modern front end tools and see how Linnia/Web3 interacts with these.
+
+Know es6/Node?
+See next tutorial here: ...
+
+Know React/Redux?
+See tutorial here: ...
+-->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>Dapp- Add/View Records</title>
+<!-- css -->
+<!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Our custom css -->
+<link rel="stylesheet" href="style.css">
+<!-- js -->
+<!--jQuery 3.3.1 - See docs at: https://blog.jquery.com/2018/01/20/jquery-3-3-1-fixed-dependencies-in-release-tag/
+jQuery is required for bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--bootstrap 3.3.7 js See docs at: https://getbootstrap.com/-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--web3.js- an interface to access Ethereum blockchain Network
+See docs at: https://github.com/ethereum/web3.js/ -->
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<!--linnia.js- Linnia Protocol's JS library for Ethereum blockchain
+See docs at: https://www.npmjs.com/package/@linniaprotocol/linnia-js,
+https://github.com/ConsenSys/linnia-js,
+https://github.com/ConsenSys/linnia-resources -->
+<script src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.1.1/dist/index.min.js"></script>
+<!-- Amazon AWS JS/Node SDK
+For this bare bones tutorial was downloaded from AWS website
+and placed into the file.
+This tutorial uses release v2.326.0
+See docs at: https://aws.amazon.com/sdk-for-node-js/
+see downloaded file at: https://github.com/aws/aws-sdk-js/releases
+-->
+<script src="./aws-sdk.min.js"></script>
+</head>
+
+<body>
+  <!--fix code to regular old html -->
+  <!--header-->
+  <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
+   <div class="header">
+     <a href='index.html' class="header-div"><span>View/Add Records</span></a>
+     <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
+     <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
+   </div>
+
+  <!--view/add record-->
+  <div>
+  <div class="jumbotron text-center">
+      <h1>View/Add Records</h1>
+      <p>User Input</p>
+  </div>
+
+  <div class="container">
+  <form id="upload-form">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input
+            placeholder="Your Legal Name"
+            class="view-add-form-text-input form-control"
+            id="name"
+            required />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Credit Score</label>
+        <div class="col-sm-10">
+          <input
+            placeholder="Equihax Credit Score"
+            class="view-add-form-text-input form-control"
+            id="credit-score"/>
+        </div>
+      </div>
+        <div class="form-group" id="upload-div">
+            <label htmlFor="exampleInputFile">Upload W-2 Tax Form</label>
+            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"/>
+            <br />
+            <small id="fileHelp" class="form-text text-muted">Please upload your most recent tax form</small>
+        </div>
+        <button loading='' class="btn btn-primary" id="submit-form-button">Add New Record</button>
+    </form>
+  </div>
+  </div>
+
+  <script>
+    console.log('Testing');
+    // add setup of web3.js and Linnia.js
+    // see: https://github.com/ConsenSys/linnia-js
+    //Pro Tip: No need to import aka require
+    // Since all files are alread imported with script tag up top
+    // We only require or import files when they are in other file in directory
+    // In next module we will refactor all our code
+
+    // const Web3 = require("web3");
+    // const Linnia = require("@linniaprotocol/linnia-js");
+    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    const linnia = new Linnia(web3);
+
+    // testing to see if loading
+    console.log(Web3);
+    console.log(Linnia);
+    console.log(AWS);
+    const s3 = new AWS.S3({region: 'us-east-ohio'});
+
+    const YOUR_BUCKET_NAME = 'linnia-tutorial';
+    let YOUR_DATA = ''; // fetch data from upload.
+    let YOUR_ENCRYPTED_DATA = ''; // use linnia util to encrypt?
+    let dataHash = '';
+
+    const params = {
+      Body: YOUR_ENCRYPTED_DATA,
+      Bucket: YOUR_BUCKET_NAME,
+      Key: dataHash, // the dataHash of your data
+      ServerSideEncryption: "AES256", // (optional): extra encryption at rest if you choose
+      ACL: 'public-read', // public read so anyone with decryption keys can read
+      Tagging: metaData // (optional): and metaData you wish to
+    }
+    // Don't forget to upload metadata to linnia server
+    // add steps here.
+
+    // workflow of Linnia
+    // First register the user to Linnia
+
+    // Register
+    // Upload
+    // Attest
+    // Permission
+
+    // ----
+    // helper functions
+    // regex
+    // accept only three numbers as credit score field
+    const validateCreditScoreInput = () => {
+      const creditScoreRegex = /\b\d{1,3}\b/g
+      const inputValue = document.querySelector("#credit-score").value;
+      parseInt(inputValue);
+      let inputResult = creditScoreRegex.test(inputValue);
+
+      if (inputResult) {
+        // proceed with submission
+        console.log('regex good!')
+      } else {
+        // error on submission
+        alert("Enter valid credit score aka of three digits");
+      }
+    }
+
+    // add event listeners to multiple elements in a class
+    // You need to add the event listener each element in that class
+    const addEventListenerToClasses = (arr, e, eventHandlerFunction) => {
+      for (var i = 0; i < arr.length; i++) {
+        arr[i].addEventListener(e, eventHandlerFunction, false);
+      }
+    }
+
+
+    // need function that captures data
+    // So upload function is really Encrypt and Append:
+    //
+    // ---
+    // Linnia functions
+    const addNewRecord = () => {
+      let name = document.querySelector('#name').value;
+      let creditScore = document.querySelector('#credit-score').value;
+      const goodInputTests = (name && creditScore) != '';
+
+      let messageOutput = goodInputTests ? 'yes' : 'no';
+      console.log(messageOutput);
+    }
+
+    // ---
+    // event handlers
+    // prevents default
+    const handleSubmitFormButton = (event) => {
+      console.log('submitted!');
+      validateCreditScoreInput();
+      addNewRecord();
+      event.preventDefault();
+      // send record to storage
+      // add logic here
+    }
+
+    // Form error message
+    const handleErrorMessage = (e) => {
+      return 'Error on submitting form' + e;
+    }
+
+    // handles input key press
+    const handleInputKeyPress = (event) => {
+      console.log(event.key);
+    }
+
+    // ---
+    // eventListeners
+    // Input onchange message
+    // querySelectorAll gets all the elements with the similar class
+    // querySelector only gets the first element with said class
+    // Why this function? Not sure...
+    const viewAddFormTextInputDivs = document.querySelectorAll(".view-add-form-text-input");
+    addEventListenerToClasses(viewAddFormTextInputDivs, 'keypress', handleInputKeyPress);
+
+    // upload form- onsubmit
+    document.querySelector("#submit-form-button")
+      .addEventListener("click", handleSubmitFormButton, false);
+
+    // upload form- onerror
+    // double check this works
+    document.querySelector("#upload-form")
+      .addEventListener("onerror", handleErrorMessage, false);
+  </script>
+</body>
+</html>

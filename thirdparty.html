@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>Dapp- Third Party</title>
+
+<!--jQuery 3.3.1 - See docs at: https://blog.jquery.com/2018/01/20/jquery-3-3-1-fixed-dependencies-in-release-tag/
+jQuery is required for bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<!--bootstrap 3.3.7 js See docs at: https://getbootstrap.com/-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--web3.js- an interface to access Ethereum blockchain Network-->
+<script type="text/javascript" src="./web3.min.js"></script>
+<!--linnia.js- Linnia Protocol's JS library for Ethereum blockchain
+See docs at: https://www.npmjs.com/package/@linniaprotocol/linnia-js,
+https://github.com/ConsenSys/linnia-js,
+https://github.com/ConsenSys/linnia-resources -->
+<script src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.1.1/dist/index.min.js"></script>
+</head>
+
+<body>
+  <!--header-->
+  <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
+   <div class="header">
+     <a href='index.html' class="header-div"><span>View/Add Records</span></a>
+     <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
+     <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
+   </div>
+  <!--code-->
+    <div>
+    <div class="jumbotron text-center">
+        <h1>Third Party Approval Status</h1>
+        <p>Approve or Deny Records</p>
+    </div>
+
+    <div class="container">
+      <form>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Hash Code</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">[info!] 039839f9...</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">{this.state.name}</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Credit Score</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">{this.state.creditScore}</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success">Approve</button>
+        <button type="button" class="btn btn-danger">Reject</button>
+      </form>
+    </div>
+    <div class="container">
+    <br/>
+    <br/>
+    <br/>
+      <form>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Hash Code</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">987654321fedcba</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">Mary Joseph</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">View W-2</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">VIEW BUTTON</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success">Approve</button>
+        <button type="button" class="btn btn-danger">Reject</button>
+      </form>
+    </div>
+    </div>
+
+<!-- JS code -->
+<script>
+  console.log('third party page');
+
+  const handleApprove = () => {
+    console.log('approve button pushed!');
+  }
+
+  const handleReject = () => {
+    console.log('reject button pushed!');
+  }
+
+  // helper functions
+  // add event listeners to multiple elements in a class
+  // You need to add the event listener each element in that class
+  const addEventListenerToClasses = (arr, e, eventHandlerFunction) => {
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].addEventListener(e, eventHandlerFunction, false);
+    }
+  }
+
+  const approveBtn = document.querySelectorAll(".btn-success");
+  addEventListenerToClasses(approveBtn, 'click', handleApprove);
+
+  const rejectBtn = document.querySelectorAll(".btn-danger");
+  addEventListenerToClasses(rejectBtn, 'click', handleReject);
+
+</script>
+</body>
+</html>
