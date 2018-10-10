@@ -38,7 +38,11 @@ See docs at: https://github.com/ethereum/web3.js/ -->
 See docs at: https://www.npmjs.com/package/@linniaprotocol/linnia-js,
 https://github.com/ConsenSys/linnia-js,
 https://github.com/ConsenSys/linnia-resources -->
+
+
+<!-- update script tag with new version of linnia -->
 <script src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.1.1/dist/index.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.1.1/dist/index.min.js"></script>
 <!-- Amazon AWS JS/Node SDK
 For this bare bones tutorial was downloaded from AWS website
 and placed into the file.
@@ -122,6 +126,7 @@ see downloaded file at: https://github.com/aws/aws-sdk-js/releases
     let YOUR_DATA = ''; // fetch data from upload.
     let YOUR_ENCRYPTED_DATA = ''; // use linnia util to encrypt?
     let dataHash = '';
+    let metaData = '';
 
     const params = {
       Body: YOUR_ENCRYPTED_DATA,
@@ -151,14 +156,10 @@ see downloaded file at: https://github.com/aws/aws-sdk-js/releases
       const inputValue = document.querySelector("#credit-score").value;
       parseInt(inputValue);
       let inputResult = creditScoreRegex.test(inputValue);
+      let inputResultOutput = inputResult ? true : false;
 
-      if (inputResult) {
-        // proceed with submission
-        console.log('regex good!')
-      } else {
-        // error on submission
-        alert("Enter valid credit score aka of three digits");
-      }
+      // logic is: go ahead if true, if not, don't.
+      return inputResultOutput;
     }
 
     // add event listeners to multiple elements in a class
@@ -168,7 +169,6 @@ see downloaded file at: https://github.com/aws/aws-sdk-js/releases
         arr[i].addEventListener(e, eventHandlerFunction, false);
       }
     }
-
 
     // need function that captures data
     // So upload function is really Encrypt and Append:
@@ -182,18 +182,31 @@ see downloaded file at: https://github.com/aws/aws-sdk-js/releases
 
       let messageOutput = goodInputTests ? 'yes' : 'no';
       console.log(messageOutput);
+
+      // send record to storage
+      // add logic here
+      // Need to encrypt
+      // as a test just encrypt and console.log it
+
+      // Need to get dataHash here?
+      // check white paper.
     }
 
     // ---
     // event handlers
     // prevents default
+
     const handleSubmitFormButton = (event) => {
       console.log('submitted!');
-      validateCreditScoreInput();
-      addNewRecord();
+      let validInput = validateCreditScoreInput();
+      if (validInput) {
+        addNewRecord();
+      } else {
+        alert('Not Valid Input. Try again');
+      }
+
+      // prevent refresh
       event.preventDefault();
-      // send record to storage
-      // add logic here
     }
 
     // Form error message
