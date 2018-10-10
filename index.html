@@ -75,7 +75,13 @@ File: https://github.com/aws/aws-sdk-js/releases -->
     console.log('Testing');
     // IMPORTANT:
     // See setup prior instructions aka MetaMask setup & Linnia Faucet registration
+    // Make sure you are on Ropsten test network
     // docs: [add post section here]
+
+    // REMINDER: RUN A LOCAL SERVER:
+    // "Due to browser security restrictions, we can't communicate with dapps running on file://.
+    //  Please use a local server for development."
+    // Docs: https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md
 
     // Linnia/web3 setup
     // docs: https://github.com/ConsenSys/linnia-js
@@ -83,15 +89,33 @@ File: https://github.com/aws/aws-sdk-js/releases -->
     // const Linnia = require("@linniaprotocol/linnia-js"); /* not needed since import up top */
     const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
     const linnia = new Linnia(web3);
+    // let contracts = await linnia.getContractInstances();
+
+    // set up metadata
+    // docs: https://github.com/ConsenSys/linnia-resources/blob/master/METADATA.md
+    // create prompt to ask for encryption public key.
+    let metaData = {
+      "dataFormat": "json",
+      "domain": "real estate",
+      "storage": "Amazon S3",
+      "encryptionScheme": "x25519-xsalsa20-poly1305",
+      "encryptionPublicKey": "",
+      "linniajsVersion": "0.3.0",
+      "providerName": "Real Estate Dapp",
+      "providerEthereumAddress": "",
+      "keywords": [ "real estate", "financial", "renting", "buying property" ],
+    };
+
+    // dataHash described: [add description]
+    let dataHash = '';
 
     // Add record set up code
-    const addNewRecord = () => {
-      let name = document.querySelector('#name').value;
-      let creditScore = document.querySelector('#credit-score').value;
-      const allInputTest = (name && creditScore) != '';
-
-      let messageOutput = allInputTest ? 'yes' : 'no';
-      console.log(messageOutput);
+    async function addNewRecord () {
+      // let name = document.querySelector('#name').value;
+      // let creditScore = document.querySelector('#credit-score').value;
+      // const allInputTest = (name && creditScore) != '';
+      // let messageOutput = allInputTest ? 'yes' : 'no';
+      console.log('Add Record');
     }
 
     // metaData setup-
@@ -108,12 +132,6 @@ File: https://github.com/aws/aws-sdk-js/releases -->
     const YOUR_BUCKET_NAME = 'linnia-tutorial';
     let YOUR_DATA = ''; // fetch data from upload.
     let YOUR_ENCRYPTED_DATA = ''; // use linnia util to encrypt?
-
-    // dataHash described: [add description]
-    let dataHash = '';
-
-    // metaData described: [add description]
-    let metaData = '';
 
     const params = {
       Body: YOUR_ENCRYPTED_DATA,
