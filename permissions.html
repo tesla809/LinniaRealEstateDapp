@@ -6,21 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <title>Dapp- Permissions</title>
-<!-- Note: css will be added later. Lets just focus on Linnia and Web3 code :) -->
-<!--web3.js- an interface to access Ethereum blockchain Network
-Docs: https://github.com/ethereum/web3.js/ -->
-<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-
-<!--linnia.js- Linnia Protocol's JS library for Ethereum blockchain
-JS Docs: https://github.com/ConsenSys/linnia-js,
-Main Repo: https://github.com/ConsenSys/linnia-resources -->
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.3.0/dist/index.min.js"></script>
-<!-- Amazon AWS JS/Node SDK
-release v2.326.0 downloaded from AWS website and placed into the file.
-Docs: https://aws.amazon.com/sdk-for-node-js/
-File: https://github.com/aws/aws-sdk-js/releases -->
-<script src="./aws-sdk.min.js"></script>
+<!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css"> <!-- Our custom css -->
 </head>
 
 <body>
@@ -115,11 +103,9 @@ File: https://github.com/aws/aws-sdk-js/releases -->
       arr[i].addEventListener(e, eventHandlerFunction, false);
     }
   }
-
   // event listeners
   const checkboxInputDivs = document.querySelectorAll(".checkbox-input" );
   addEventListenerToClasses(checkboxInputDivs, 'click', handleGrantPermission);
-
 </script>
 
 </body>
