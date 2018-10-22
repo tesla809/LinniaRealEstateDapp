@@ -12,9 +12,8 @@ Docs/blog: [add blog post] -->
     <!-- css -->
     <!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Our custom css -->
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="./linniaUtil.js"></script>
+    <link rel="stylesheet" href="style.css"> <!-- Our custom css -->
+    <script type="text/javascript" src="./linniaUtil.js"></script> <!-- linnia utility js file-->
   </head>
 
   <body>
@@ -64,6 +63,7 @@ Docs/blog: [add blog post] -->
 
           <!-- upload file info -->
           <fieldset>
+            <legend>File Upload</legend>
             <div class="form-group" id="upload-div">
                 <label htmlFor="exampleInputFile">Upload W-2 Tax Form</label>
                 <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"/>
@@ -76,6 +76,7 @@ Docs/blog: [add blog post] -->
         </form>
       </main>
       </div>
+    </div>
 
       <script>
         console.log('Testing');
@@ -148,6 +149,5 @@ Docs/blog: [add blog post] -->
         document.querySelector("#upload-form")
           .addEventListener("onerror", handleErrorMessage, false);
       </script>
-    </div>
   </body>
 </html>
