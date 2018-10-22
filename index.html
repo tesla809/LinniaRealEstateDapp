@@ -1,187 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--Plain Old HTML, CSS, JS to help you understand Linnia
+We do use Node and ES6 since it standard in most up to date documentation.
 We intend to remove as many barriers to learning Linnia as possible. See blog post for reasons.
 Docs/blog: [add blog post] -->
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-<title>Dapp- Add/View Records</title>
-<!-- Note: css will be added later. Lets just focus on Linnia and Web3 code :)
-Ignore class definitions in the HTML -->
-<!-- web3.js- an interface to access Ethereum blockchain Network
-Docs: https://github.com/ethereum/web3.js/ -->
-<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-<!--linnia.js- Linnia Protocol's JS library for Ethereum blockchain
-Docs: https://github.com/ConsenSys/linnia-js and https://github.com/ConsenSys/linnia-resources -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.3.0/dist/index.min.js"></script>
-<!-- Amazon AWS JS/Node SDK
-release v2.326.0 downloaded from AWS website and placed into project.
-Docs: https://aws.amazon.com/sdk-for-node-js/
-File: https://github.com/aws/aws-sdk-js/releases -->
-<script src="./aws-sdk.min.js"></script>
-</head>
-<body>
-  <!--fix code to regular old html -->
-  <!--header-->
-  <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
-   <div class="header">
-     <a href='index.html' class="header-div"><span>View/Add Records</span></a>
-     <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
-     <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
-   </div>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Dapp- Add/View Records</title>
+    <!-- css -->
+    <!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Our custom css -->
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="./linniaUtil.js"></script>
+  </head>
 
-  <!--view/add record portion-->
-  <div>
-  <div class="jumbotron text-center">
-      <h1>View/Add Records</h1>
-      <p>User Input</p>
-  </div>
+  <body>
+    <div class="container">
+      <!--header-->
+      <header class="header">
+        <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
+        <nav>
+           <a href='index.html' class="header-div"><span>View/Add Records</span></a>
+           <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
+           <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
+         </nav>
+       </header>
 
-  <div class="container">
-  <form id="upload-form">
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-          <input
-            placeholder="Your Legal Name"
-            class="view-add-form-text-input form-control"
-            id="name"
-            required />
+      <!--view/add record jumbotron-->
+        <div class="jumbotron text-center">
+            <h1>View/Add Records</h1>
+            <p>User Input</p>
         </div>
+
+      <main>
+        <form id="upload-form" action="">
+          <fieldset>
+            <label>Basic Information</label>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input
+                  placeholder="Your Legal Name"
+                  class="view-add-form-text-input form-control"
+                  id="name"
+                  required />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Credit Score</label>
+              <div class="col-sm-10">
+                <input
+                  placeholder="Equihax Credit Score"
+                  class="view-add-form-text-input form-control"
+                  id="credit-score"/>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="form-group" id="upload-div">
+                <label htmlFor="exampleInputFile">Upload W-2 Tax Form</label>
+                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"/>
+                <br />
+                <small id="fileHelp" class="form-text text-muted">Please upload your most recent tax form</small>
+            </div>
+          </fieldset>
+
+          <button type='submit' class="btn btn-primary" id="submit-form-button">Add New Record</button>
+        </form>
+      </main>
       </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Credit Score</label>
-        <div class="col-sm-10">
-          <input
-            placeholder="Equihax Credit Score"
-            class="view-add-form-text-input form-control"
-            id="credit-score"/>
-        </div>
-      </div>
-        <div class="form-group" id="upload-div">
-            <label htmlFor="exampleInputFile">Upload W-2 Tax Form</label>
-            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"/>
-            <br />
-            <small id="fileHelp" class="form-text text-muted">Please upload your most recent tax form</small>
-        </div>
-        <button loading='' class="btn btn-primary" id="submit-form-button">Add New Record</button>
-    </form>
-  </div>
-  </div>
 
-  <script>
-    console.log('Testing');
-    // IMPORTANT:
-    // See setup prior instructions aka MetaMask setup & Linnia Faucet registration
-    // Make sure you are on Ropsten test network
-    // docs: [add post section here]
+      <script>
+        console.log('Testing');
+        // IMPORTANT:
+        // See setup prior instructions aka MetaMask setup & Linnia Faucet registration
+        // Make sure you are on Ropsten test network
+        // docs: [add post section here]
 
-    // REMINDER: RUN A LOCAL SERVER:
-    // "Due to browser security restrictions, we can't communicate with dapps running on file://.
-    //  Please use a local server for development."
-    // Docs: https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md
+        // REMINDER: RUN A LOCAL SERVER:
+        // "Due to browser security restrictions, we can't communicate with dapps running on file://.
+        //  Please use a local server for development."
+        // Docs: https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md
 
-    // Linnia/web3 setup
-    // docs: https://github.com/ConsenSys/linnia-js
-    // const Web3 = require("web3"); /* not needed since import up top */
-    // const Linnia = require("@linniaprotocol/linnia-js"); /* not needed since import up top */
-    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-    const linnia = new Linnia(web3);
-    // let contracts = await linnia.getContractInstances();
+        // ---
+        // event handlers
+        // keep here
+        async function handleSubmitFormButton (event) {
+          console.log('submitted!');
+          let validInput = validateCreditScoreInput();
+          if (validInput) {
+            let file = document.querySelector('#exampleInputFile');
+            addNewRecord(file);
+          } else {
+            alert('Not Valid Input. Try again');
+          }
+          event.preventDefault();
+        }
 
-    // set up metadata
-    // docs: https://github.com/ConsenSys/linnia-resources/blob/master/METADATA.md
-    // create prompt to ask for encryption public key.
-    let metaData = {
-      "dataFormat": "json",
-      "domain": "real estate",
-      "storage": "Amazon S3",
-      "encryptionScheme": "x25519-xsalsa20-poly1305",
-      "encryptionPublicKey": "",
-      "linniajsVersion": "0.3.0",
-      "providerName": "Real Estate Dapp",
-      "providerEthereumAddress": "",
-      "keywords": [ "real estate", "financial", "renting", "buying property" ],
-    };
+        async function onSubmit (event) {
+          // pull credit score and name
+          const creditScore = document.querySelector("#credit-score").value;
+          const name = document.querySelector("#name").value;
+          loading = true;
+          errorMessage = '';
+          // pop up public key
+          const publicKey = prompt('Please enter your public key');
+          event.preventDefault();
 
-    // dataHash described: [add description]
-    let dataHash = '';
+          console.log('about to add record');
+          const uri = await addRecord({ creditScore, name })
+          console.log('record added!', uri)
+        };
 
-    // Add record set up code
-    async function addNewRecord () {
-      // let name = document.querySelector('#name').value;
-      // let creditScore = document.querySelector('#credit-score').value;
-      // const allInputTest = (name && creditScore) != '';
-      // let messageOutput = allInputTest ? 'yes' : 'no';
-      console.log('Add Record');
-    }
 
-    // metaData setup-
-    // explained: [add doc]
-    // ---
-    // storage setup
-    console.log(Web3); // test if assets loaded
-    console.log(Linnia);
-    console.log(AWS);
+        // Form error message
+        const handleErrorMessage = (e) => {
+          return 'Error on submitting form' + e;
+        }
 
-    // AWS set up
-    // Docs: [add post here]
-    const s3 = new AWS.S3({region: 'us-east-ohio'});
-    const YOUR_BUCKET_NAME = 'linnia-tutorial';
-    let YOUR_DATA = ''; // fetch data from upload.
-    let YOUR_ENCRYPTED_DATA = ''; // use linnia util to encrypt?
+        // ---
+        // Helper functions
+        // Regex validation- accept only three numbers as credit score field
+        const validateCreditScoreInput = () => {
+          const creditScoreRegex = /\b\d{1,3}\b/g
+          const inputValue = document.querySelector("#credit-score").value;
+          parseInt(inputValue);
+          let inputResult = creditScoreRegex.test(inputValue);
+          let inputResultOutput = inputResult ? true : false;
+          return inputResultOutput;  // logic is: go ahead if true, if not, don't.
+        }
 
-    const params = {
-      Body: YOUR_ENCRYPTED_DATA,
-      Bucket: YOUR_BUCKET_NAME,
-      Key: dataHash, // the dataHash of your data
-      ServerSideEncryption: "AES256", // (optional): extra encryption at rest if you choose
-      ACL: 'public-read', // public read so anyone with decryption keys can read
-      Tagging: metaData // (optional): and metaData you wish to
-    }
+        // ---
+        // eventListeners
+        // upload form- onsubmit
+        document.querySelector("#submit-form-button")
+          .addEventListener("click", handleSubmitFormButton, false);
 
-    // ---
-    // event handlers
-    const handleSubmitFormButton = (event) => {
-      console.log('submitted!');
-      let validInput = validateCreditScoreInput();
-      if (validInput) {
-        addNewRecord();
-      } else {
-        alert('Not Valid Input. Try again');
-      }
-      event.preventDefault();
-    }
-
-    // Form error message
-    const handleErrorMessage = (e) => {
-      return 'Error on submitting form' + e;
-    }
-
-    // ---
-    // Helper functions
-    // Regex validation- accept only three numbers as credit score field
-    const validateCreditScoreInput = () => {
-      const creditScoreRegex = /\b\d{1,3}\b/g
-      const inputValue = document.querySelector("#credit-score").value;
-      parseInt(inputValue);
-      let inputResult = creditScoreRegex.test(inputValue);
-      let inputResultOutput = inputResult ? true : false;
-      return inputResultOutput;  // logic is: go ahead if true, if not, don't.
-    }
-
-    // ---
-    // eventListeners
-    // upload form- onsubmit
-    document.querySelector("#submit-form-button")
-      .addEventListener("click", handleSubmitFormButton, false);
-
-    // upload form- onerror
-    // Check if this works
-    document.querySelector("#upload-form")
-      .addEventListener("onerror", handleErrorMessage, false);
-  </script>
-</body>
+        // upload form- onerror
+        // Check if this works
+        document.querySelector("#upload-form")
+          .addEventListener("onerror", handleErrorMessage, false);
+      </script>
+    </div>
+  </body>
 </html>
