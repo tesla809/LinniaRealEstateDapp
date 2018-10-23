@@ -6,111 +6,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <title>Dapp- Third Party</title>
-<!-- web3.js- an interface to access Ethereum blockchain Network
-Docs: https://github.com/ethereum/web3.js/ -->
-<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-<!--linnia.js- Linnia Protocol's JS library for Ethereum blockchain
-See docs at: https://www.npmjs.com/package/@linniaprotocol/linnia-js,
-https://github.com/ConsenSys/linnia-js,
-https://github.com/ConsenSys/linnia-resources -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@linniaprotocol/linnia-js-script-tag@0.3.0/dist/index.min.js"></script>
+<!-- css -->
+<!--bootstrap 3.3.7 css- See docs at: https://getbootstrap.com/-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css"> <!-- Our custom css -->
+<script type="text/javascript" src="./linniaUtil.js"></script> <!-- linnia utility js file-->
 </head>
 
 <body>
-  <!--header-->
-  <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
-   <div class="header">
-     <a href='index.html' class="header-div"><span>View/Add Records</span></a>
-     <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
-     <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
-   </div>
-  <!--code-->
-    <div>
+  <div class="container">
+   <header class="header">
+     <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
+     <nav>
+        <a href='index.html' class="header-div"><span>View/Add Records</span></a>
+        <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
+        <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
+      </nav>
+    </header>
+
     <div class="jumbotron text-center">
         <h1>Third Party Approval Status</h1>
         <p>Approve or Deny Records</p>
     </div>
 
-    <div class="container">
-      <form>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Hash Code</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">[info!] 039839f9...</p>
+    <div>
+      <section>
+        <form action="someAction.js" method="posts">
+          <fieldset class="form-section">
+            <legend>Sample TX 1</legend>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Hash Code</label>
+              <div class="col-sm-10">
+                <p class="form-control-static">sample hash info</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <p class="form-control-static">sample name</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Credit Score</label>
+              <div class="col-sm-10">
+                <p class="form-control-static">sample credit score</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Approve</button>
+            <button type="submit" class="btn btn-danger">Reject</button>
+          </fieldset>
+        </form>
+      </div>
+
+      <form action="someAction.js" method="post">
+        <fieldset class="form-section">
+          <legend>Sample TX 1</legend>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Hash Code</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">sample hash code</p>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">{this.state.name}</p>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">Mary Joseph</p>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Credit Score</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">{this.state.creditScore}</p>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">View W-2</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">VIEW BUTTON</p>
+            </div>
           </div>
-        </div>
-        <button type="button" class="btn btn-success">Approve</button>
-        <button type="button" class="btn btn-danger">Reject</button>
+
+          <button type="submit" id="approve-button" class="btn btn-success">Approve</button>
+          <button type="submit" id="reject-button" class="btn btn-danger">Reject</button>
+        </fieldset>
       </form>
-    </div>
-    <div class="container">
-    <br/>
-    <br/>
-    <br/>
-      <form>
-      <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Hash Code</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">987654321fedcba</p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">Mary Joseph</p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">View W-2</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">VIEW BUTTON</p>
-          </div>
-        </div>
-        <button type="button" class="btn btn-success">Approve</button>
-        <button type="button" class="btn btn-danger">Reject</button>
-      </form>
-    </div>
-    </div>
+    </section>
 
-<!-- JS code -->
-<script>
-  console.log('third party page');
+  </div>
+  </div>
+  <script>
+    console.log('third party page');
 
-  const handleApprove = () => {
-    console.log('approve button pushed!');
-  }
-
-  const handleReject = () => {
-    console.log('reject button pushed!');
-  }
-
-  // helper functions
-  // add event listeners to multiple elements in a class
-  // You need to add the event listener each element in that class
-  const addEventListenerToClasses = (arr, e, eventHandlerFunction) => {
-    for (var i = 0; i < arr.length; i++) {
-      arr[i].addEventListener(e, eventHandlerFunction, false);
+    // event handlers
+    const handleApprove = () => {
+      console.log('approve button pushed!');
     }
-  }
 
-  const approveBtn = document.querySelectorAll(".btn-success");
-  addEventListenerToClasses(approveBtn, 'click', handleApprove);
+    const handleReject = () => {
+      console.log('reject button pushed!');
+    }
 
-  const rejectBtn = document.querySelectorAll(".btn-danger");
-  addEventListenerToClasses(rejectBtn, 'click', handleReject);
+    // Elements
+    const approveBtn = document.querySelectorAll("#approve-button");
+    const rejectBtn = document.querySelectorAll("#reject-button");
 
-</script>
-</body>
+    // Helper Functions
+    // add event listeners to multiple elements in a class
+    const addEventListenerToClasses = (arr, e, eventHandlerFunction) => {
+      for (var i = 0; i < arr.length; i++) {
+        arr[i].addEventListener(e, eventHandlerFunction, false);
+      }
+    }
+
+    // Event Listners
+    addEventListenerToClasses(approveBtn, 'click', handleApprove);
+    addEventListenerToClasses(rejectBtn, 'click', handleReject);
+  </script>
+  </body>
 </html>
