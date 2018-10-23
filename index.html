@@ -18,7 +18,6 @@ Docs/blog: [add blog post] -->
 
   <body>
     <div class="container">
-      <!--header-->
       <header class="header">
         <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
         <nav>
@@ -78,76 +77,77 @@ Docs/blog: [add blog post] -->
       </div>
     </div>
 
-      <script>
-        console.log('Testing');
-        // IMPORTANT:
-        // See setup prior instructions aka MetaMask setup & Linnia Faucet registration
-        // Make sure you are on Ropsten test network
-        // docs: [add post section here]
+    <script>
+      console.log('Testing');
+      // IMPORTANT:
+      // See setup prior instructions aka MetaMask setup & Linnia Faucet registration
+      // Make sure you are on Ropsten test network
+      // docs: [add post section here]
 
-        // REMINDER: RUN A LOCAL SERVER:
-        // "Due to browser security restrictions, we can't communicate with dapps running on file://.
-        //  Please use a local server for development."
-        // Docs: https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md
+      // REMINDER: RUN A LOCAL SERVER:
+      // "Due to browser security restrictions, we can't communicate with dapps running on file://.
+      //  Please use a local server for development."
+      // Docs: https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md
 
-        // ---
-        // event handlers
-        // keep here
-        async function handleSubmitFormButton (event) {
-          console.log('submitted!');
-          let validInput = validateCreditScoreInput();
-          if (validInput) {
-            let file = document.querySelector('#exampleInputFile');
-            addNewRecord(file);
-          } else {
-            alert('Not Valid Input. Try again');
-          }
-          event.preventDefault();
+      // ---
+      // event handlers
+      // keep here
+      async function handleSubmitFormButton (event) {
+        let validInput = validateCreditScoreInput();
+        if (validInput) {
+          let file = document.querySelector('#exampleInputFile');
+          addNewRecord(file);
+          console.log("added new record")
+        } else {
+          alert('Please enter your name and credit score.');
         }
+        event.preventDefault();
+        console.log('submitted!');
+      }
 
-        async function onSubmit (event) {
-          // pull credit score and name
-          const creditScore = document.querySelector("#credit-score").value;
-          const name = document.querySelector("#name").value;
-          loading = true;
-          errorMessage = '';
-          // pop up public key
-          const publicKey = prompt('Please enter your public key');
-          event.preventDefault();
+      async function onSubmit (event) {
+        console.log('YO!')
+        // pull credit score and name
+        const creditScore = document.querySelector("#credit-score").value;
+        const name = document.querySelector("#name").value;
+        loading = true;
+        errorMessage = '';
+        // pop up public key
+        const publicKey = prompt('Please enter your public key');
+        event.preventDefault();
+        console.log('about to add record');
+        // const uri = await addRecord({ creditScore, name })
+        console.log('record added!', uri)
+      };
 
-          console.log('about to add record');
-          const uri = await addRecord({ creditScore, name })
-          console.log('record added!', uri)
-        };
 
+      // Form error message
+      const handleErrorMessage = (e) => {
+        return 'Error on submitting form' + e;
+      }
 
-        // Form error message
-        const handleErrorMessage = (e) => {
-          return 'Error on submitting form' + e;
-        }
+      // ---
+      // Helper functions
+      // Regex validation- accept only three numbers as credit score field
+      const validateCreditScoreInput = () => {
+        const creditScoreRegex = /\b\d{1,3}\b/g
+        const inputValue = document.querySelector("#credit-score").value;
+        parseInt(inputValue);
+        let inputResult = creditScoreRegex.test(inputValue);
+        let inputResultOutput = inputResult ? true : false;
+        return inputResultOutput;  // logic is: go ahead if true, if not, don't.
+      }
 
-        // ---
-        // Helper functions
-        // Regex validation- accept only three numbers as credit score field
-        const validateCreditScoreInput = () => {
-          const creditScoreRegex = /\b\d{1,3}\b/g
-          const inputValue = document.querySelector("#credit-score").value;
-          parseInt(inputValue);
-          let inputResult = creditScoreRegex.test(inputValue);
-          let inputResultOutput = inputResult ? true : false;
-          return inputResultOutput;  // logic is: go ahead if true, if not, don't.
-        }
+      // ---
+      // eventListeners
+      // upload form- onsubmit
+      document.querySelector("#submit-form-button")
+        .addEventListener("click", handleSubmitFormButton, false);
 
-        // ---
-        // eventListeners
-        // upload form- onsubmit
-        document.querySelector("#submit-form-button")
-          .addEventListener("click", handleSubmitFormButton, false);
-
-        // upload form- onerror
-        // Check if this works
-        document.querySelector("#upload-form")
-          .addEventListener("onerror", handleErrorMessage, false);
-      </script>
+      // upload form- onerror
+      // Check if this works
+      document.querySelector("#upload-form")
+        .addEventListener("onerror", handleErrorMessage, false);
+    </script>
   </body>
 </html>
