@@ -12,78 +12,82 @@
 </head>
 
 <body>
-  <!--header-->
-  <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
-   <div class="header">
-     <a href='index.html' class="header-div"><span>View/Add Records</span></a>
-     <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
-     <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
-   </div>
-  <!--code-->
-  <div>
-    <div class="jumbotron text-center">
-        <h1>View/Add Permission</h1>
-        <p>Manage File Permissions</p>
+  <div class="container">
+    <!--header-->
+     <header class="header">
+       <h1 class="header-title" id="app-header-title">Real Estate Dapp</h1>
+       <nav>
+         <a href='index.html' class="header-div"><span>View/Add Records</span></a>
+         <a href='permissions.html' class="header-div"><span>View/Add Permissions</span></a>
+         <a href='thirdparty.html' class="header-div"><span>Third Party</span></a>
+       </nav>
+     </header>
+     
+    <!--code-->
+    <div>
+      <div class="jumbotron text-center">
+          <h1>View/Add Permission</h1>
+          <p>Manage File Permissions</p>
+      </div>
+      <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Give Permission To: </th>
+            <th scope="col">Name</th>
+            <th scope="col">Credit Score</th>
+            <th scope="col">W-2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">Bank 1</th>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            </tr>
+            <tr>
+            <th scope="row">Renter 2</th>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            </tr>
+            <tr>
+            <th scope="row">Mortage Company3</th>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            <td>
+              <input class="checkbox-input" type="checkbox"
+                aria-label="Checkbox for following text input"/>
+            </td>
+            </tr>
+        </tbody>
+      </table>
     </div>
-    <table class="table">
-      <thead>
-          <tr>
-          <th scope="col">Give Permission To: </th>
-          <th scope="col">Name</th>
-          <th scope="col">Credit Score</th>
-          <th scope="col">W-2</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-          <th scope="row">Bank 1</th>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          </tr>
-          <tr>
-          <th scope="row">Renter 2</th>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          </tr>
-          <tr>
-          <th scope="row">Mortage Company3</th>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          <td>
-            <input class="checkbox-input" type="checkbox"
-              aria-label="Checkbox for following text input"/>
-          </td>
-          </tr>
-      </tbody>
-    </table>
   </div>
-
 <!-- JS code -->
 <script>
   console.log('permissions page');
